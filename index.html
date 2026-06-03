@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптив -->
+    <title>Корочки.есть</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Шапка сайта -->
+    <header class="site-header">
+        <div class="logo">Корочки.есть</div>
+        <nav class="nav">
+            <a href="#" onclick="showPage('login')">Вход</a>
+            <a href="#" onclick="showPage('reg')">Регистрация</a>
+            <span id="userName" class="user-name"></span> <!-- Имя юзера -->
+            <a href="#" onclick="logout()" id="logoutBtn" style="display:none">Выход</a>
+        </nav>
+    </header>
+
+    <main class="main-wrapper">
+        <!-- Левая колонка: Формы и панели -->
+        <section class="form-section">
+
+            <!-- Тост (всплывашка) -->
+            <div id="toast"></div>
+
+            <!-- СТРАНИЦА: Вход -->
+            <div id="login" class="page">
+                <h2>Вход</h2>
+                <input id="l_login" placeholder="Логин">
+                <small class="err" id="e_login"></small> <!-- Ошибка логина -->
+                <input id="l_pass" type="password" placeholder="Пароль">
+                <small class="err" id="e_pass"></small> <!-- Ошибка пароля -->
+                <button onclick="doLogin()">Войти</button>
+                <a href="#" onclick="showPage('reg')">Еще не зарегистрированы? Регистрация</a>
+            </div>
+
+            <!-- СТРАНИЦА: Регистрация -->
+            <div id="reg" class="page hidden">
+                <h2>Регистрация</h2>
+                <input id="r_login" placeholder="Логин (лат+цифры ≥6)">
+                <small class="err" id="re_login"></small>
+                <input id="r_pass" type="password" placeholder="Пароль ≥8">
+                <small class="err" id="re_pass"></small>
+                <input id="r_fio" placeholder="ФИО (кириллица)">
+                <small class="err" id="re_fio"></small>
+                <input id="r_phone" placeholder="8(XXX)XXX-XX-XX">
+                <small class="err" id="re_phone"></small>
+                <input id="r_email" placeholder="Email">
+                <small class="err" id="re_email"></small>
+                <button onclick="doReg()">Зарегистрироваться</button>
+                <a href="#" onclick="showPage('login')">Назад ко входу</a>
+            </div>
+
+            <!-- СТРАНИЦА: Мои заявки (User) -->
+            <div id="user" class="page hidden">
+                <h2>Мои заявки</h2>
+                <div id="appsList"></div> <!-- Сюда JS добавит список -->
+                <hr>
+                <h3>Новая заявка</h3>
+                <select id="a_course">
+                    <option>Основы алгоритмизации и программирования</option>
+                    <option>Основы веб-дизайна</option>
+                    <option>Основы проектирования баз данных</option>
+                </select>
+                <input id="a_date" type="text" placeholder="ДД.ММ.ГГГГ">
+                <select id="a_pay">
+                    <option>Наличные</option>
+                    <option>Перевод по телефону</option>
+                </select>
+                <button onclick="doNewApp()">Отправить</button>
+            </div>
+
+            <!-- СТРАНИЦА: Админка -->
+            <div id="admin" class="page hidden">
+                <h2>Панель администратора</h2>
+                <button class="btn-logout" onclick="logout()">🚪 Выйти</button>
+
+                <!-- Фильтр -->
+                <select id="adminFilter" onchange="renderAdmin()">
+                    <option value="">Все статусы</option>
+                    <option>Новая</option>
+                    <option>Идет обучение</option>
+                    <option>Обучение завершено</option>
+                </select>
+
+                <div id="adminList"></div> <!-- Список заявок -->
+                <div id="pag"></div> <!-- Пагинация -->
+            </div>
+
+        </section>
+
+        <!-- Правая колонка: Слайдер -->
+        <div class="slider-section">
+            <div class="slider" id="mainSlider">
+                <img src="Модуль 1/image06.jpg" class="active">
+                <img src="Модуль 1/image07.jpg">
+                <img src="Модуль 1/image08.webp">
+                <img src="Модуль 1/image09.webp">
+                <img src="Модуль 1/image10.webp">
+                <img src="Модуль 1/image11.jpg">
+                <img src="Модуль 1/image12.webp">
+
+                <button class="s-prev" onclick="moveSlide(-1)">❮</button>
+                <button class="s-next" onclick="moveSlide(1)">❯</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="site-footer">
+        <p>© 2026 Корочки.есть</p>
+        <p>📞 8(800)555-35-35</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
